@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPL Win Predictor</title>
+
+  <!-- Tailwind CSS CDN for utility classes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts - Inter for consistent typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS link -->
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+  <!-- Dynamic background element - JavaScript will change its background image -->
+  <div class="dynamic-background" id="bg"></div>
+  <!-- Overlay for the background images to add a darker tint -->
+  <div class="background-overlay"></div>
+
+  <!-- Main content container, positioned above the background -->
+  <div class="container-card">
+    <h1 class="text-center mb-10">
+      <span class="text-yellow-500">IPL Win Predictor</span>
+    </h1>
+
+    <!-- Grid layout for form inputs, responsive across different screen sizes -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div>
+        <label for="batting_team">Batting Team:</label>
+        <select id="batting_team" class="form-select"></select>
+      </div>
+
+      <div>
+        <label for="bowling_team">Bowling Team:</label>
+        <select id="bowling_team" class="form-select"></select>
+      </div>
+
+      <div>
+        <label for="city">Venue City:</label>
+        <select id="city" class="form-select"></select>
+      </div>
+
+      <div>
+        <label for="target">Target Score:</label>
+        <input type="number" id="target" class="form-input" placeholder="e.g., 180" min="0" />
+      </div>
+
+      <div>
+        <label for="score">Current Score:</label>
+        <input type="number" id="score" class="form-input" placeholder="e.g., 120" min="0" />
+      </div>
+
+      <div>
+        <label for="wickets">Wickets Down:</label>
+        <input type="number" id="wickets" class="form-input" placeholder="e.g., 3" min="0" max="9" />
+      </div>
+
+      <!-- This input spans two columns on medium and larger screens -->
+      <div class="md:col-span-2">
+        <label for="overs">Overs Completed:</label>
+        <input type="number" id="overs" class="form-input" placeholder="e.g., 12.5" min="0" max="20" step="0.1" />
+      </div>
+    </div>
+
+    <!-- Button to trigger the prediction -->
+    <div class="text-center">
+      <button onclick="predict()" class="btn-primary">Predict Winning Probability</button>
+    </div>
+
+    <!-- Div to display prediction results or error messages -->
+    <div id="result" class="hidden" aria-live="polite"></div>
+  </div>
+
+  <!-- Link to the JavaScript file, typically at the end of body for performance -->
+  <script src="static/js/script.js"></script>
+</body>
+</html>

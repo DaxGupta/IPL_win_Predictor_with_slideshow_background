@@ -1,0 +1,220 @@
+/* ------------------------------------------- */
+/* Styles for the dynamic image background and overlay */
+/* ------------------------------------------- */
+body, html {
+  height: 100%; /* Ensure body and html take full viewport height */
+  width: 100%;  /* Ensure body and html take full viewport width */
+  background-color: black; /* Initial background color before images load */
+}
+
+.dynamic-background {
+  position: fixed; /* Fixes the background to the viewport */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: contain; /* Ensures the image fits within the element */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+  transition: background-image 1s ease-in-out; /* Smooth transition for image changes */
+  z-index: -2; /* Puts it behind everything else */
+}
+
+.background-overlay {
+  position: fixed; /* Fixes the overlay to the viewport */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: -1; /* Puts it between the background image and the content */
+}
+
+/* General body styling for font, layout, and scrolling */
+body {
+  font-family: 'Inter', sans-serif; /* Use Inter font */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center;   /* Center content vertically */
+  min-height: 100vh;     /* Ensure it takes at least full viewport height */
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  position: relative; /* Needed for z-index context */
+  z-index: 0; /* Ensures body content is above background elements */
+  overflow-y: auto; /* Allows vertical scrolling if content exceeds viewport height */
+}
+
+/* Styling for the main container card (the form) */
+.container-card {
+  background-color: rgba(255, 255, 255, 0.1); /* Very transparent white for frosted glass effect */
+  border-radius: 25px; /* Rounded corners */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8); /* Stronger shadow for depth */
+  padding: 40px;
+  max-width: 750px;
+  width: 100%;
+  animation: fadeIn 0.8s ease-out; /* Fade-in animation on load */
+  backdrop-filter: blur(1px); /* Frosted glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  position: relative; /* Ensures it's positioned correctly above the background */
+  z-index: 10; /* Ensures it's above the overlay */
+  max-height: 90vh; /* Limit height to 90% of viewport height */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+
+  /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Keyframe animation for fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styling for form input fields and select dropdowns */
+.form-input, .form-select {
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 12px; /* Rounded corners */
+  padding: 14px 18px;
+  width: 100%; /* Full width within its parent */
+  box-sizing: border-box;
+  font-size: 1rem;
+  background-color: #f9f9f9; /* Light background for inputs */
+  transition: all 0.3s ease; /* Smooth transitions for focus effects */
+  color: #333; /* Dark text color */
+}
+
+/* Focus styles for input fields and select dropdowns */
+.form-input:focus,
+.form-select:focus {
+  border-color: #4f46e5; /* Blue border on focus */
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.25); /* Blue glow on focus */
+  background-color: #fff; /* White background on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Styling for the primary button */
+.btn-primary {
+  background-color: #4f46e5; /* Primary blue background */
+  color: white; /* White text */
+  padding: 15px 35px;
+  border-radius: 15px; /* Rounded corners */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer; /* Indicates interactivity */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3); /* Subtle shadow */
+  border: none; /* No default border */
+}
+
+/* Hover effects for the primary button */
+.btn-primary:hover {
+  background-color: #4338ca; /* Darker blue on hover */
+  transform: translateY(-3px); /* Slight lift effect */
+  box-shadow: 0 12px 25px rgba(79, 70, 229, 0.4); /* Enhanced shadow on hover */
+}
+
+/* Styling for the prediction result display */
+.result-display {
+  background: linear-gradient(45deg, #e0f7fa, #e8f5e9); /* Light gradient background */
+  border: 1px solid #a7ffeb; /* Light green border */
+  border-radius: 15px;
+  padding: 30px;
+  margin-top: 35px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00695c; /* Dark green text */
+  text-align: center;
+  line-height: 1.6;
+  animation: slideIn 0.6s ease-out; /* Slide-in animation */
+  box-shadow: 0 8px 20px rgba(0, 150, 136, 0.1); /* Subtle shadow */
+}
+
+/* Styling for error messages */
+.error-message {
+  background-color: #ffebee; /* Light red background */
+  border: 1px solid #ffcdd2; /* Red border */
+  color: #d32f2f; /* Dark red text */
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 25px;
+  font-weight: 600;
+  text-align: center;
+  animation: shake 0.4s ease-in-out; /* Shake animation for errors */
+  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.2); /* Subtle red shadow */
+}
+
+/* Keyframe animation for slide-in effect */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Keyframe animation for shake effect (for errors) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* Styling for the main heading */
+h1 {
+  font-size: 4rem; /* Larger font size */
+  font-weight: 900; /* Bolder font weight */
+  color: #f7f9fa; /* Very light white color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05); /* Subtle text shadow */
+}
+
+/* Specific styling for 'IPL' in the heading, creating a metallic/gradient effect */
+h1 .text-yellow-500 {
+  /* Use a strong, visible color as a fallback for browsers that don't support text-fill-color */
+  color: #FFD700; /* Gold-like color, highly visible */
+
+  /* Apply a linear gradient for the text */
+  background: repeating-radial-gradient(ellipse farthest-corner at center center, #1D3D8D 0%, #2A58CC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px white;
+    color: #ffc107;
+
+  font-size: 4rem; /* Ensure consistent font size */
+  font-weight: 900; /* Ensure consistent font weight */
+}
+
+/* Styling for form labels */
+label {
+  color: #fbf9f9; /* Light white color for labels for better contrast */
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Responsive adjustments for medium screens (tablets) */
+@media (max-width: 768px) {
+  .container-card { padding: 30px; } /* Adjust padding and margin */
+  h1 { font-size: 3rem; margin-bottom: 25px; } /* Adjust heading font size */
+  h1 .text-yellow-500 { font-size: 3rem; } /* Adjust 'IPL' part font size */
+  .form-input, .form-select, .btn-primary { font-size: 0.95rem; padding: 12px 15px; } /* Adjust input/button sizes */
+  .result-display, .error-message { font-size: 1.1rem; padding: 20px; } /* Adjust result/error message sizes */
+}
+
+/* Responsive adjustments for small screens (mobile phones) */
+@media (max-width: 480px) {
+  .container-card { padding: 20px; } /* Further adjust padding */
+  h1 { font-size: 2.5rem; } /* Further adjust heading font size */
+  h1 .text-yellow-500 { font-size: 2.5rem; } /* Further adjust 'IPL' part font size */
+  .btn-primary { padding: 12px 25px; font-size: 0.9rem; } /* Further adjust button size */
+}
+
+/* Accessibility: Styles for keyboard focus indicator */
+.form-input:focus-visible,
+.form-select:focus-visible,
+.btn-primary:focus-visible {
+  outline: 3px solid #1a73e8; /* Blue outline for keyboard focus */
+  outline-offset: 2px; /* Offset the outline slightly */
+}
